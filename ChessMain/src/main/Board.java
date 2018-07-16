@@ -12,9 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Pieces.Pawn;
+
 public class Board extends JFrame implements MouseListener {
 	private Tile board[][] = new Tile[8][8];
-
+	private static Tile lastSelect = null;
+	private static Tile currentSelect = null;
 	
 	
 	
@@ -36,6 +39,13 @@ public class Board extends JFrame implements MouseListener {
 				boardPanel.add(this.board[i][j]);
 			}
 		}
+		
+		Pawn p = new Pawn("black", board[0][0]);
+		board[0][0].setPiece(p);
+
+		Pawn p2 = new Pawn("white", board[7][7]);
+		board[7][7].setPiece(p2);
+		
 		setMinimumSize(new Dimension(800,700));
 		add(boardPanel);
 		
@@ -57,8 +67,28 @@ public class Board extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		Tile t = (Tile)arg0.getSource();
-		t.setBackground(Color.blue);
+		/*Tile t = (Tile)arg0.getSource();
+		t.setBackground(Color.blue);*/
+		
+		
+		if(lastSelect == null) {
+			lastSelect = (Tile)arg0.getSource();
+			lastSelect.selectTile();
+			return;
+		}else {
+			currentSelect = (Tile)arg0.getSource();
+			
+			
+			if(lastSelect.getPiece() != null) {
+				
+				lastSelect.getPiece().move(currentSelect);
+			}
+			lastSelect.deselectTile();
+			lastSelect = null;
+			currentSelect = null;
+		}
+		
+		
 		
 	}
 
