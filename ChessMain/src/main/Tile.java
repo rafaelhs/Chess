@@ -84,8 +84,10 @@ public class Tile extends JPanel{
 
 	public void setPiece(Piece piece) {
 		this.piece = piece;
-		piece.setTile(this);
-		this.setImage(piece.getImagePath());
+		//piece.setTile(this);
+		if(piece != null) {
+			this.setImage(piece.getImagePath());
+		}
 	}
 	
 	

@@ -4,21 +4,18 @@ import java.util.ArrayList;
 
 import main.Tile;
 
-public class Pawn extends Piece {
-
+public class Queen extends Piece {
 	
-	
-	public Pawn(String color, Tile tile) {
-		super(color, tile, "pawn");
+	public Queen(String color, Tile tile) {
+		super(color, tile, "queen");
 		if(color.equals("white")) {
-			this.setImagePath("src\\Pieces\\White_Pawn.png");
+			this.setImagePath("src\\Pieces\\White_Queen.png");
 		}else {
-			this.setImagePath("src\\Pieces\\Black_Pawn.png");
+			this.setImagePath("src\\Pieces\\Black_Queen.png");
 		}
 	}
 	
 
-	
 	@Override
 	public ArrayList<Tile> getPath(Tile[][] board) {
 		// TODO Auto-generated method stub
