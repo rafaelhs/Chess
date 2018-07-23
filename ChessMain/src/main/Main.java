@@ -19,7 +19,7 @@ public class Main {
 		ClientGUI cgui = new ClientGUI();
 		
 		
-		board.setVisible(true);
+		sgui.setVisible(true);
 		//sgui.setVisible(true);
 		//svgui.setVisible(true);
 		//cgui.setVisible(true);

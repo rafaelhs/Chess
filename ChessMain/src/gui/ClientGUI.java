@@ -3,6 +3,7 @@ package gui;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.InetAddress;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 public class ClientGUI extends JFrame implements MouseListener {
 	private JLabel serverLabel = new JLabel("Server ip: ");
 	private JTextField serverText = new JTextField();
+	private JButton button = new JButton("ok");
 	
 	public ClientGUI() {
 		
@@ -29,18 +31,21 @@ public class ClientGUI extends JFrame implements MouseListener {
 		this.serverText.setColumns(10);
 		add(this.serverText, c);
 		
+		this.button.addMouseListener(this);
+		add(this.button);
+		
 		setLocation(100, 100);
 		setSize(new Dimension(400,200));
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
-	
-	
-	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource() == this.button) {
+			System.out.println(this.serverText.getText());
+		}
 		
 	}
 

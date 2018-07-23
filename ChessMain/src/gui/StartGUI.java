@@ -5,10 +5,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import main.Board;
 
 public class StartGUI extends JFrame implements MouseListener {
 	
@@ -17,6 +20,10 @@ public class StartGUI extends JFrame implements MouseListener {
 	private JButton server = new JButton("Server");
 	private JButton client = new JButton("Client");
 	private JButton exit = new JButton("Exit");
+	
+	private ServerGUI serverGUI;
+	private ClientGUI clientGUI;
+	private Board board;
 	
 	
 	public StartGUI() {
@@ -38,16 +45,20 @@ public class StartGUI extends JFrame implements MouseListener {
 		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 2;
+		this.server.addMouseListener(this);
 		add(this.server, c);
+		
 		
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 2;
+		this.client.addMouseListener(this);
 		add(this.client, c);
 		
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 2;
+		this.exit.addMouseListener(this);
 		add(this.exit, c);
 		
 		setLocation(100, 100);
@@ -60,6 +71,30 @@ public class StartGUI extends JFrame implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource()==this.server) {
+			this.serverGUI = new ServerGUI();
+			this.setVisible(false);
+			this.serverGUI.setVisible(true);
+			
+			/*
+			this.board = new Board();
+			this.serverGUI.setVisible(false);
+			this.board.setVisible(true);
+			*/
+
+		}else if(e.getSource()==this.client) {
+			this.clientGUI = new ClientGUI();
+			this.setVisible(false);
+			this.clientGUI.setVisible(true);
+			
+			/*
+			this.board = new Board();
+			this.clientGUI.setVisible(false);
+			this.board.setVisible(true);
+			*/
+		}else if(e.getSource()==this.exit) {
+			System.exit(0);
+		}
 		
 	}
 

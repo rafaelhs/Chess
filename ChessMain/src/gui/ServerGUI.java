@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -15,9 +16,12 @@ public class ServerGUI extends JFrame implements MouseListener{
 	private JLabel wait = new JLabel("Waiting connection...");
 	private JLabel ip;
 	
-	public ServerGUI() throws UnknownHostException {
-		ip = new JLabel("Server ip: "+InetAddress.getLocalHost().getHostAddress());
-		
+	public ServerGUI(){
+		try {
+			ip = new JLabel("Server ip: "+InetAddress.getLocalHost().getHostAddress());
+		}catch(IOException e) {
+			ip = new JLabel("ERROR");
+		}
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		
