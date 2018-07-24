@@ -17,8 +17,11 @@ public class ClientGUI extends JFrame implements MouseListener {
 	private JLabel serverLabel = new JLabel("Server ip: ");
 	private JTextField serverText = new JTextField();
 	private JButton button = new JButton("ok");
+	private MainGUI mainGUI;
 	
-	public ClientGUI() {
+	
+	public ClientGUI(MainGUI mainGUI) {
+		this.mainGUI = mainGUI;
 		
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
@@ -44,7 +47,14 @@ public class ClientGUI extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == this.button) {
-			System.out.println(this.serverText.getText());
+			
+			if(true) {/*testar se ip e valido*/
+				this.mainGUI.setIp(this.serverText.getText());
+				System.out.println(this.serverText.getText());
+				this.mainGUI.createBoard();
+				this.mainGUI.unsetClientGUI();
+			}else {
+			}
 		}
 		
 	}

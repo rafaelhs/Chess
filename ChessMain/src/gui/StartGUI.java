@@ -21,12 +21,12 @@ public class StartGUI extends JFrame implements MouseListener {
 	private JButton client = new JButton("Client");
 	private JButton exit = new JButton("Exit");
 	
-	private ServerGUI serverGUI;
-	private ClientGUI clientGUI;
-	private Board board;
+	private MainGUI mainGUI;
 	
 	
-	public StartGUI() {
+	public StartGUI(MainGUI mainGUI) {
+		this.mainGUI = mainGUI;
+		
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -70,28 +70,15 @@ public class StartGUI extends JFrame implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 		if(e.getSource()==this.server) {
-			this.serverGUI = new ServerGUI();
-			this.setVisible(false);
-			this.serverGUI.setVisible(true);
-			
-			/*
-			this.board = new Board();
-			this.serverGUI.setVisible(false);
-			this.board.setVisible(true);
-			*/
+			this.mainGUI.createServerGUI();
+			this.mainGUI.unsetStartGUI();
 
 		}else if(e.getSource()==this.client) {
-			this.clientGUI = new ClientGUI();
-			this.setVisible(false);
-			this.clientGUI.setVisible(true);
+			this.mainGUI.createClientGUI();
+			this.mainGUI.unsetStartGUI();
 			
-			/*
-			this.board = new Board();
-			this.clientGUI.setVisible(false);
-			this.board.setVisible(true);
-			*/
 		}else if(e.getSource()==this.exit) {
 			System.exit(0);
 		}
