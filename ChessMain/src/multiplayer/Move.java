@@ -20,6 +20,21 @@ public class Move {
 		 return String.format("{\"xOrigin\":%d, \"yOrigin\":%d, \"xEnd\":%d, \"yEnd\":%d}", this.xOrigin, this.yOrigin, this.xEnd, this.yEnd);
 	}
 	
+	public static Move convertToObject(String json) {
+		String[] tokens = json.split(",");
+		String[] xO, yO, xE, yE;
+		xO = tokens[0].split(":");
+		yO = tokens[1].split(":");
+		xE = tokens[2].split(":");
+		yE = tokens[3].split(":");
+		
+		yE[1] = yE[1].replace("}", "");
+		
+		Move newMove = new Move(Integer.parseInt(xO[1]), Integer.parseInt(yO[1]), Integer.parseInt(xE[1]), Integer.parseInt(yE[1]));
+
+		return newMove;
+	}
+	
 	public int getxOrigin() {
 		return xOrigin;
 	}
