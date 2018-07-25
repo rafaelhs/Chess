@@ -15,8 +15,10 @@ import javax.swing.JLabel;
 public class ServerGUI extends JFrame implements MouseListener{
 	private JLabel wait = new JLabel("Waiting connection...");
 	private JLabel ip;
+	private MainGUI mainGUI;
 	
-	public ServerGUI(){
+	public ServerGUI(MainGUI mainGUI){
+		this.mainGUI = mainGUI;
 		try {
 			ip = new JLabel("Server ip: "+InetAddress.getLocalHost().getHostAddress());
 		}catch(IOException e) {
