@@ -15,7 +15,7 @@ public class MultiplayerClient extends MultiplayerCommunication{
 	
 	MultiplayerClient(){}
 	
-	MultiplayerClient(String ip, int port) throws UnknownHostException, IOException{
+	public MultiplayerClient(String ip, int port) throws UnknownHostException, IOException{
 		this.connection = new Socket(ip, port);
 	}
 

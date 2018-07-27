@@ -13,9 +13,9 @@ public class MultiplayerServer extends MultiplayerCommunication{
 	private Socket connection;
 	private ServerSocket server;
 	
-	MultiplayerServer() {}
+	public MultiplayerServer() {}
 	
-	MultiplayerServer(int port) throws IOException {
+	public MultiplayerServer(int port) throws IOException {
 		this.port = port;
 		this.server = new ServerSocket(port);
 	}

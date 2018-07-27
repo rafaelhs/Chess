@@ -12,7 +12,7 @@ public abstract class MultiplayerCommunication {
 		try {
 			DataOutputStream dOut = new DataOutputStream(connection.getOutputStream());
 			dOut.writeUTF(message);
-			dOut.close();
+			//dOut.close();
 		} catch (IOException e) {
 			return false;
 		}

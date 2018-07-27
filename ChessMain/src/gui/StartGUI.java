@@ -72,12 +72,30 @@ public class StartGUI extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 
 		if(e.getSource()==this.server) {
+			
+			this.mainGUI.setType("server");
+			this.mainGUI.setTypeSelect(true);
+			/*
 			this.mainGUI.createServerGUI();
 			this.mainGUI.unsetStartGUI();
+			this.mainGUI.createServer();
+			this.mainGUI.waitConnection();
+			System.out.println("Servidor Conectado!!");
+			this.mainGUI.unsetServerGUI();
+			this.mainGUI.createBoard();
+			*/
+			
 
 		}else if(e.getSource()==this.client) {
+			this.mainGUI.setType("client");
+			this.mainGUI.setTypeSelect(true);
+			
+			/*
+			this.mainGUI.setTypeSelect(true);
 			this.mainGUI.createClientGUI();
 			this.mainGUI.unsetStartGUI();
+			*/
+			//System.out.println("Cliente Conectado!!");
 			
 		}else if(e.getSource()==this.exit) {
 			System.exit(0);

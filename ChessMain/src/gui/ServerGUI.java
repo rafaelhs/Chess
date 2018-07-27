@@ -24,6 +24,7 @@ public class ServerGUI extends JFrame implements MouseListener{
 		}catch(IOException e) {
 			ip = new JLabel("ERROR");
 		}
+		
 		GridBagConstraints c = new GridBagConstraints();
 		setLayout(new GridBagLayout());
 		
@@ -38,7 +39,7 @@ public class ServerGUI extends JFrame implements MouseListener{
 		setSize(new Dimension(400,200));
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
+		this.mainGUI.setType("server");
 	}
 	
 	

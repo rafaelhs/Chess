@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-
+/*
 	public static void main(String[] args) {
 		
 		Move move = new Move(1, 2, 3, 4);
@@ -16,6 +16,7 @@ public class Main {
 		System.out.println("2 - para client");
 		
 		int op = input.nextInt();
+		input.nextLine();
 		
 		if(op == 1) {
 			try {
@@ -24,6 +25,8 @@ public class Main {
 				if(b) {
 					System.out.println("Connection establish - Server.");
 					System.out.println(server.receive(server.getConnection()));
+					
+					server.send(server.getConnection(), "!!!!");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -35,6 +38,10 @@ public class Main {
 				System.out.println("Connection establish - Client.");
 				
 				client.send(client.getConnection(), json);
+				//String str = input.nextLine();
+				System.out.println(client.receive(client.getConnection()));
+
+				
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -43,5 +50,5 @@ public class Main {
 		
 
 	}
-
+*/
 }

@@ -9,7 +9,7 @@ public class Move {
 	
 	Move(){}
 	
-	Move(int xOrigin, int yOrigin, int xEnd, int yEnd){
+	public Move(int xOrigin, int yOrigin, int xEnd, int yEnd){
 		this.xOrigin = xOrigin;
 		this.yOrigin = yOrigin;
 		this.xEnd = xEnd;

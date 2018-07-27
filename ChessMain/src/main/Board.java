@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -19,19 +20,33 @@ import Pieces.Pawn;
 import Pieces.Piece;
 import Pieces.Queen;
 import Pieces.Rook;
+import gui.MainGUI;
+import multiplayer.Move;
 
 public class Board extends JFrame implements MouseListener {
 	private Tile board[][] = new Tile[8][8];
 	private static Tile lastSelect = null;
 	private static Tile currentSelect = null;
+	private MainGUI mainGUI;
+	private boolean turn;
 	
 	
 	
 	
+
 	
-	
-	public Board() {
+	public Board(MainGUI mainGUI) {
 		super("Chess");
+		this.mainGUI = mainGUI;
+		
+		
+		System.out.println(this.mainGUI.getType());
+		
+		if(this.mainGUI.getType().equals("server")) {
+			this.turn = true;
+		} else {
+			this.turn = false;
+		}
 		
 		JPanel boardPanel = new JPanel(new GridLayout(8, 8));
 		
@@ -117,27 +132,29 @@ public class Board extends JFrame implements MouseListener {
 		
 		
 		
-		
-		
-		
-		
-
-		Pawn p2 = new Pawn("white", board[7][7]);
-		board[7][7].setPiece(p2);
-		
 		setMinimumSize(new Dimension(800,700));
 		add(boardPanel);
 		
 		setLocationRelativeTo(null);
 		setResizable(false);
+	}
+	
+	
+	public void waitMove() {
+		try {
+			Move move = this.mainGUI.receiveMove();
+			board[move.getxOrigin()][move.getyOrigin()].getPiece().move(board[move.getxEnd()][move.getyEnd()]);
+			this.turn = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		//lastSelect.getPiece().move(currentSelect);
 
 		
 		
 	}
-	
-	
-	
-	
+
 	
 	
 	
@@ -145,10 +162,8 @@ public class Board extends JFrame implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		/*Tile t = (Tile)arg0.getSource();
-		t.setBackground(Color.blue);*/
-		
+		if(!this.turn) return;
+
 		
 		if(lastSelect == null) {
 			lastSelect = (Tile)arg0.getSource();
@@ -159,8 +174,12 @@ public class Board extends JFrame implements MouseListener {
 			
 			
 			if(lastSelect.getPiece() != null) {
+				this.mainGUI.setOrigin(lastSelect);
+				this.mainGUI.setDestiny(currentSelect);
+				this.mainGUI.setMoveSelect(true);
 				
-				lastSelect.getPiece().move(currentSelect);
+				
+			
 			}
 			lastSelect.deselectTile();
 			lastSelect = null;
@@ -170,6 +189,16 @@ public class Board extends JFrame implements MouseListener {
 		
 		
 	}
+
+	public boolean isTurn() {
+		return turn;
+	}
+
+
+	public void setTurn(boolean turn) {
+		this.turn = turn;
+	}
+
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {

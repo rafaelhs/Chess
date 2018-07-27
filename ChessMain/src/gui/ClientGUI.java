@@ -41,20 +41,15 @@ public class ClientGUI extends JFrame implements MouseListener {
 		setSize(new Dimension(400,200));
 		setLocationRelativeTo(null);
 		setResizable(false);
+		this.mainGUI.setType("client");
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == this.button) {
-			
-			if(true) {/*testar se ip e valido*/
-				this.mainGUI.setIp(this.serverText.getText());
-				System.out.println(this.serverText.getText());
-				this.mainGUI.createBoard();
-				this.mainGUI.unsetClientGUI();
-			}else {
-			}
+			this.mainGUI.setIp(this.serverText.getText());
+			this.mainGUI.setIpSelect(true);
 		}
 		
 	}
