@@ -14,6 +14,7 @@ public class MainGUI implements Runnable{
 	private StartGUI startGUI;
 	private ServerGUI serverGUI;
 	private ClientGUI clientGUI;
+	private EndGUI endGUI;
 	private Board board;
 	
 	private String ip;
@@ -95,6 +96,16 @@ public class MainGUI implements Runnable{
 	public void unsetBoard() {
 		this.board.setVisible(false);
 		this.board = null;
+	}
+	
+	public void createEndGUI(String text) {
+		this.endGUI = new EndGUI(this);
+		this.endGUI.getMessageLabel().setText(text);
+		this.endGUI.setVisible(true);
+	}
+	public void unsetEndGUI() {
+		this.endGUI.setVisible(false);
+		this.endGUI = null;
 	}
 	
 	
@@ -191,11 +202,8 @@ public class MainGUI implements Runnable{
 			this.unsetStartGUI();
 			this.createServer();
 			this.waitConnection();
-			System.out.println("Servidor Conectado!!");
 			this.unsetServerGUI();
 			
-			try {Thread.sleep(2000);} 
-			catch (InterruptedException e) {e.printStackTrace();}
 			
 			this.createBoard();
 		}else if(this.type.equals("client")) {
@@ -216,7 +224,6 @@ public class MainGUI implements Runnable{
 			}
 			
 			if(true) {/*testar se ip e valido*/
-				System.out.println(this.ip);
 				this.createClient();
 				this.unsetClientGUI();
 				
@@ -237,17 +244,30 @@ public class MainGUI implements Runnable{
 			}
 			
 			
-
+			if(this.destiny.getPiece()!=null) {
+				if(this.destiny.getPiece().getType().equals("king")) {
+					this.origin.getPiece().move(this.destiny);
+					
+					
+					this.createEndGUI("Winner!");
+					Move move = new Move(9, 9, 9, 9);
+					this.sendMove(move);
+					this.unsetBoard();
+					break;
+					
+				}
+			}
 			this.origin.getPiece().move(this.destiny);
-			//System.out.println("["+lastSelect.getcX()+lastSelect.getcY()+currentSelect.getcX()+currentSelect.getcY()+"]");
+			
+
+		
+			
 			
 			Move move = new Move(this.origin.getcX(), this.origin.getcY(), this.destiny.getcX(), this.destiny.getcY());
 			this.sendMove(move);
 			this.board.setTurn(false);
 			this.moveSelect = false;
-			System.out.println("wait start");
 			this.board.waitMove();
-			System.out.println("wait end");
 			
 			
 			

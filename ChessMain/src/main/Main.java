@@ -14,8 +14,6 @@ public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		
 		MainGUI mainGUI = new MainGUI();
-		//mainGUI.createBoard();
-		//mainGUI.createStartGUI();
 		mainGUI.run();
 		
 	}

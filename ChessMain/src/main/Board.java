@@ -36,11 +36,10 @@ public class Board extends JFrame implements MouseListener {
 
 	
 	public Board(MainGUI mainGUI) {
-		super("Chess");
+		super("Chess - "+mainGUI.getType());
 		this.mainGUI = mainGUI;
 		
 		
-		System.out.println(this.mainGUI.getType());
 		
 		if(this.mainGUI.getType().equals("server")) {
 			this.turn = true;
@@ -143,10 +142,21 @@ public class Board extends JFrame implements MouseListener {
 	public void waitMove() {
 		try {
 			Move move = this.mainGUI.receiveMove();
+			
+			if(move.getxOrigin() == 9 && move.getyOrigin() == 9 && move.getxEnd() == 9 && move.getyEnd() == 9 ) {
+				this.mainGUI.unsetBoard();
+				this.mainGUI.createEndGUI("Loser!");
+				return;
+			}
+			
 			board[move.getxOrigin()][move.getyOrigin()].getPiece().move(board[move.getxEnd()][move.getyEnd()]);
 			this.turn = true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			this.mainGUI.unsetBoard();
+			this.mainGUI.createEndGUI("Loser!");
+			//e.printStackTrace();
+			return;
+
 		}
 		
 		//lastSelect.getPiece().move(currentSelect);

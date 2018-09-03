@@ -9,9 +9,9 @@ public class King extends Piece {
 	public King(String color, Tile tile) {
 		super(color, tile, "king");
 		if(color.equals("white")) {
-			this.setImagePath("src\\Pieces\\White_King.png");
+			this.setImagePath("..\\Pieces\\White_King.png");
 		}else {
-			this.setImagePath("src\\Pieces\\Black_King.png");
+			this.setImagePath("..\\Pieces\\Black_King.png");
 		}
 	}
 	

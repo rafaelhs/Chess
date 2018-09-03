@@ -9,9 +9,9 @@ public class Knight extends Piece {
 	public Knight(String color, Tile tile) {
 		super(color, tile, "knight");
 		if(color.equals("white")) {
-			this.setImagePath("src\\Pieces\\White_Knight.png");
+			this.setImagePath("..\\Pieces\\White_Knight.png");
 		}else {
-			this.setImagePath("src\\Pieces\\Black_Knight.png");
+			this.setImagePath("..\\Pieces\\Black_Knight.png");
 		}
 	}
 	

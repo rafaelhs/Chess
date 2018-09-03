@@ -9,9 +9,9 @@ public class Rook extends Piece {
 	public Rook(String color, Tile tile) {
 		super(color, tile, "rook");
 		if(color.equals("white")) {
-			this.setImagePath("src\\Pieces\\White_Rook.png");
+			this.setImagePath("..\\Pieces\\White_Rook.png");
 		}else {
-			this.setImagePath("src\\Pieces\\Black_Rook.png");
+			this.setImagePath("..\\Pieces\\Black_Rook.png");
 		}
 	}
 	

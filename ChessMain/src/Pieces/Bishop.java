@@ -10,10 +10,11 @@ public class Bishop extends Piece {
 	public Bishop(String color, Tile tile) {
 		super(color, tile, "bishop");
 		if(color.equals("white")) {
-			this.setImagePath("src\\Pieces\\White_Bishop.png");
+			this.setImagePath("..\\Pieces\\White_Bishop.png");
 		}else {
-			this.setImagePath("src\\Pieces\\Black_Bishop.png");
+			this.setImagePath("..\\Pieces\\Black_Bishop.png");
 		}
+
 	}
 	
 	

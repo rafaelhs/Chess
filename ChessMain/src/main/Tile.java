@@ -57,7 +57,7 @@ public class Tile extends JPanel{
 	}
 	
 	public void setImage(String path) {
-		this.image.setIcon(new ImageIcon(path));
+		this.image.setIcon(new ImageIcon(getClass().getResource(path)));
 		this.image.setHorizontalAlignment(SwingConstants.CENTER);
 		
 	}
